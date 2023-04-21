@@ -1,6 +1,7 @@
 <div class="row_background">
+
   <div class="wrapper"><br>
-    <h1 class="htext co1 ">ข้อมูลสินค้า</h1>
+    <h1 class="htext co1 ">เเก้ไขสินค้า</h1>
 
     <div class="container-space">
 
@@ -29,21 +30,61 @@
                 </select>
               </div>
             </div>
-
-
-            <div class="col -inset-7">
+          </div>
+          <div class="row">
+            <div class="col">
               <div class="form-group">
                 <label for="exampleInputEmail1">ชื่อสินค้า</label>
                 <input [disabled]="details" type="ชื่อสินค้า" class="form-control" id="Name"
                   aria-describedby="emailHelp" placeholder="กรุณากรอกชื่อสินค้า " [(ngModel)]="Name">
               </div>
             </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputPassword1">จำนวนสินค้า</label>
+                <input [disabled]="details" type="จำนวนสินค้า" class="form-control" id="amount"
+                  placeholder="กรุณากรอกจำนวนสินค้า" [(ngModel)]="amount">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">ราคาสินค้าต่อชิ้น</label>
+                <input [disabled]="details" type="ราคาสินค้า" class="form-control" id="price"
+                  aria-describedby="emailHelp " placeholder="กรุณากรอกราคาสินค้า" [(ngModel)]="price">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputPassword1">ราคาสินค้าทั้งหมด</label>
+                <input [disabled]="details" type="ราคาสินค้าทั้งหมด" class="form-control" id="priceall"
+                  placeholder="กรุณากรอกราคาสินค้าทั้งหมด" [(ngModel)]="priceall">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">วันที่สินค้าเข้า</label>
+                <input [disabled]="details" type="วันหมดอายุ" class="form-control" id="code_1"
+                  aria-describedby="emailHelp" placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="code_1">
+
+              </div>
+
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">วันหมดอายุ</label>
+                <input [disabled]="details" type="วันหมดอายุ" class="form-control" id="code"
+                  aria-describedby="emailHelp" placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="code">
+              </div>
+            </div>
           </div>
 
-          <div class="row mt-4 ">
+          <div class="row mt-4">
             <div class="col text-center">
-              <button type="button" class="btn btn-warning mr-2 mb-5"
-                (click)="Search(dropdownData.value)">ค้นหา</button>
+              <button type="button" class="btn btn-warning mr-2 mb-5" (click)="edit()">เเก้ไข</button>
             </div>
           </div>
         </div>
@@ -64,6 +105,7 @@
                 <th scope="col">จำนวนสินค้า</th>
                 <th scope="col">ราคาสินค้าต่อชิ้น</th>
                 <th scope="col">ราคาสินค้าทั้งหมด</th>
+                <th scope="col">รายละเอียด</th>
               </tr>
             </thead>
             <tbody class="text-center">
@@ -77,7 +119,14 @@
                 <td>{{ data.amount }}</td>
                 <td>{{ formatMoney(data.price) }}</td>
                 <td>{{ formatMoney(data.priceall) }}</td>
-
+                <td>
+                  <button type="button" style="color: #0a0705;" class="btn btn-primary mr-2" (click)="pull(data)">
+                    รายละเอียด
+                  </button>
+                  <button type="button" style="color: #0a0705;" class="btn btn-danger " (click)="Delete(data)">
+                    ลบข้อมูล
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -85,8 +134,11 @@
       </div>
 
 
+      <button class="button" (click)="gotoProfile('add',0)">เพิ่มข้อมูลสินค้า</button>
+
     </div>
   </div>
+
 </div>
 <nav class="main-menu">
   <li>

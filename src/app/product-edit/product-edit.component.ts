@@ -1,24 +1,23 @@
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DropdownModels } from './store/store.module';
+import { DropdownModels } from './prostore/prostore.module';
+import { FormControl, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
+  selector: 'app-product-edit',
+  templateUrl: './product-edit.component.html',
+  styleUrls: ['./product-edit.component.css'],
 })
-export class ProductComponent implements OnInit {
+export class ProductEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
     private firestore: AngularFirestore
   ) {}
-
   getFormatedDate(date: Date, format: string) {
     const datePipe = new DatePipe('en-US');
     return datePipe.transform(date, format);
@@ -31,14 +30,13 @@ export class ProductComponent implements OnInit {
       },
     });
   }
-
   textHeader: string = 'เพิ่มข้อมูลสินค้า';
   textHead = 'รายการสินค้า';
   details = false;
   list: any[] = [];
   [x: string]: any;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.GetAll();
     this._data.valueChanges;
     console.log(this._data);
@@ -58,7 +56,6 @@ export class ProductComponent implements OnInit {
   isCheckValidator: boolean = false;
   _data: any = [];
   dropdownData = new FormControl('', [Validators.required]);
-
   /* -------------------------------------------------------------------------- */
   /*                                  functions                                 */
   /* -------------------------------------------------------------------------- */
@@ -130,7 +127,46 @@ export class ProductComponent implements OnInit {
         }
       });
   }
-
+  /* -------------------------------------------------------------------------- */
+  /*                                 functions   edit                                    */
+  /* -------------------------------------------------------------------------- */
+  edit(): void {
+    const data: any = {
+      Name: this.Name,
+      amount: this.amount,
+      price: this.price,
+      priceall: this.priceall,
+      code: this.code,
+      code_1: this.code_1,
+      type: this.type,
+      _ID: this._ID,
+    };
+    console.log(this.Name);
+    this.firestore
+      .collection('product(coffee)')
+      .doc(this._ID)
+      .set(data)
+      .then(() => {
+        console.log(data);
+        this.resetForm();
+        this.isCheckEditMode = false;
+        this.router.navigate(['/product']);
+        // alert('Data added successfully!');
+      })
+      .catch((error) => {
+        alert(`Error adding data: ${error}`);
+      });
+  }
+  resetForm(): void {
+    this.Name = '';
+    this._ID = '';
+    this.amount = '';
+    this.price = 0;
+    this.priceall = 0;
+    this.code = '';
+    this.code_1 = '';
+    this.type = '';
+  }
   /* -------------------------------------------------------------------------- */
   /*                                  functions  pull                           */
   /* -------------------------------------------------------------------------- */
@@ -147,7 +183,7 @@ export class ProductComponent implements OnInit {
           this.priceall = item.priceall;
           this.type = item.type;
           this.code = item.code;
-          this.code_1 = item.code;
+          this.code_1 = item.code_1;
           this._ID = item._ID;
         }
       });
@@ -172,15 +208,5 @@ export class ProductComponent implements OnInit {
         this._data = [res];
         this.resetForm();
       });
-  }
-  resetForm(): void {
-    this.Name = '';
-    this._ID = '';
-    this.amount = '';
-    this.price = 0;
-    this.priceall = 0;
-    this.code = '';
-    this.code_1 = '';
-    this.type = '';
   }
 }

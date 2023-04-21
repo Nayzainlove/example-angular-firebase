@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ProductInformationComponent } from './product-information/product-information.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProductInformationComponent } from './product-information/product-infor
     EditProductComponent,
     RegisterComponent,
     ProductInformationComponent,
+    ProductEditComponent,
   ],
   imports: [
     BrowserModule,

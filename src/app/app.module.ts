@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ProductInformationComponent } from './product-information/product-information.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { FilterPipe } from './product/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     RegisterComponent,
     ProductInformationComponent,
     ProductEditComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

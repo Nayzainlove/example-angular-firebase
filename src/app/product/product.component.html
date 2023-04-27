@@ -30,7 +30,6 @@
               </div>
             </div>
 
-
             <div class="col -inset-7">
               <div class="form-group">
                 <label for="exampleInputEmail1">ชื่อสินค้า</label>
@@ -40,12 +39,7 @@
             </div>
           </div>
 
-          <div class="row mt-4 ">
-            <div class="col text-center">
-              <button type="button" class="btn btn-warning mr-2 mb-5"
-                (click)="Search(dropdownData.value)">ค้นหา</button>
-            </div>
-          </div>
+
         </div>
       </div><br>
 
@@ -67,7 +61,7 @@
               </tr>
             </thead>
             <tbody class="text-center">
-              <tr *ngFor="let data of this._data; let i = index">
+              <tr *ngFor="let data of this._data| filter:searchText || _ID || type || Name; let i = index ">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ data._ID }}</td>
                 <td>{{ data.code_1 }}</td>

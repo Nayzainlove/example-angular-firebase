@@ -90,7 +90,7 @@ export class ProductEditComponent implements OnInit {
     { id: 5, value: 'ผัก' },
   ];
   /* -------------------------------------------------------------------------- */
-  /*                                   functions Delete                                    */
+  /*                                   functions Delete                         */
   /* -------------------------------------------------------------------------- */
   Delete(item?: any, category?: any): void {
     this.firestore
@@ -107,7 +107,7 @@ export class ProductEditComponent implements OnInit {
       });
   }
   /* -------------------------------------------------------------------------- */
-  /*                                  functions  search                                    */
+  /*                                  functions  search                         */
   /* -------------------------------------------------------------------------- */
   search(item: any, category?: any): void {
     this.firestore
@@ -128,7 +128,7 @@ export class ProductEditComponent implements OnInit {
       });
   }
   /* -------------------------------------------------------------------------- */
-  /*                                 functions   edit                                    */
+  /*                                 functions   edit                           */
   /* -------------------------------------------------------------------------- */
   edit(): void {
     const data: any = {

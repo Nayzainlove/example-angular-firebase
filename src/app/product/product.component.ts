@@ -58,6 +58,7 @@ export class ProductComponent implements OnInit {
   isCheckValidator: boolean = false;
   _data: any = [];
   dropdownData = new FormControl('', [Validators.required]);
+  searchText: string = '';
 
   /* -------------------------------------------------------------------------- */
   /*                                  functions                                 */
@@ -112,24 +113,24 @@ export class ProductComponent implements OnInit {
   /* -------------------------------------------------------------------------- */
   /*                                  functions  search                                    */
   /* -------------------------------------------------------------------------- */
-  search(item: any, category?: any): void {
-    this.firestore
-      .collection('product(coffee)')
-      .doc(this._ID)
-      .get()
-      .subscribe((res) => {
-        if (res.exists) {
-          this.Name = item.Name;
-          this.amount = item.amount;
-          this.price = item.price;
-          this.priceall = item.priceall;
-          this.type = item.type;
-          this.code = item.code;
-          this.code_1 = item.code_1;
-          this._ID = item._ID;
-        }
-      });
-  }
+  // search(item: any, category?: any): void {
+  //   this.firestore
+  //     .collection('product(coffee)')
+  //     .doc(this._ID)
+  //     .get()
+  //     .subscribe((res) => {
+  //       if (res.exists) {
+  //         this.Name = item.Name;
+  //         this.amount = item.amount;
+  //         this.price = item.price;
+  //         this.priceall = item.priceall;
+  //         this.type = item.type;
+  //         this.code = item.code;
+  //         this.code_1 = item.code_1;
+  //         this._ID = item._ID;
+  //       }
+  //     });
+  // }
 
   /* -------------------------------------------------------------------------- */
   /*                                  functions  pull                           */

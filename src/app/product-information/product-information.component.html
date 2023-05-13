@@ -1,96 +1,196 @@
 <div class="row_background">
+
   <div class="wrapper"><br>
-    <h1 class="htext co1 ">ข้อมูลสินค้า</h1>
+    <h1 class="htext co1 ">เเก้ไขข้อมูลพนักงาน</h1>
+
     <div class="container-space">
+
       <div class="card">
+
         <div class="card-header">
           <label>รายการสินค้า</label>
         </div>
-        <div>
-          <div class="card mt" style="background-color: #663d2b; border-color: #fff;">
-            <div class="row"></div>
-            <table class="table table-light mt-4 table-show">
-              <thead class="text-center">
-                <tr class="text">
-                  <th scope="col">ลำดับ</th>
-                  <th scope="col">วันที่สินค้าเข้า</th>
-                  <th scope="col">วันหมดอายุ</th>
-                  <th scope="col">ประเภทสินค้า</th>
-                  <th scope="col">ชื่อสินค้า</th>
-                  <th scope="col">จำนวนสินค้า</th>
-                  <th scope="col">ราคาสินค้าต่อชิ้น</th>
-                  <th scope="col">ราคาสินค้าทั้งหมด</th>
-                </tr>
-              </thead>
-              <tbody class="text-center">
-                <tr *ngFor="let data of this._data; let i = index">
-                  <th scope="row">{{ i + 1 }}</th>
-                  <td>{{ data._ID }}</td>
-                  <td>{{ data.code }}</td>
-                  <td>{{ data.type }}</td>
-                  <td>{{ data.Name }}</td>
-                  <td>{{ data.amount }}</td>
-                  <td>{{ data.price }}</td>
-                  <td>{{ data.priceall }}</td>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">รหัสสินค้า</label>
+                <input [disabled]="details" type="รหัสสินค้า" class="form-control" id="_ID" aria-describedby="emailHelp"
+                  placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="_ID">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group m">
+                <label for="exampleFormControlSelect1">ประเภทสินค้า</label>
+                <select [disabled]="details" class="form-control" id="type" [(ngModel)]="type">
+                  <option selected disabled value="">กรุณาเลือก</option>
+                  <option value="วัตถุดิบ">วัตถุดิบ</option>
+                  <option value="วัสดุอุปกรณ์">วัสดุอุปกรณ์</option>
+                  <option value="เมล็ดกาเเฟ">เมล็ดกาเเฟ</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">ชื่อสินค้า</label>
+                <input [disabled]="details" type="ชื่อสินค้า" class="form-control" id="Name"
+                  aria-describedby="emailHelp" placeholder="กรุณากรอกชื่อสินค้า " [(ngModel)]="Name">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputPassword1">จำนวนสินค้า</label>
+                <input [disabled]="details" type="จำนวนสินค้า" class="form-control" id="amount"
+                  placeholder="กรุณากรอกจำนวนสินค้า" [(ngModel)]="amount">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">ราคาสินค้าต่อชิ้น</label>
+                <input [disabled]="details" type="ราคาสินค้า" class="form-control" id="price"
+                  aria-describedby="emailHelp " placeholder="กรุณากรอกราคาสินค้า" [(ngModel)]="price">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputPassword1">ราคาสินค้าทั้งหมด</label>
+                <input [disabled]="details" type="ราคาสินค้าทั้งหมด" class="form-control" id="priceall"
+                  placeholder="กรุณากรอกราคาสินค้าทั้งหมด" [(ngModel)]="priceall">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">วันที่สินค้าเข้า</label>
+                <input [disabled]="details" type="วันหมดอายุ" class="form-control" id="code_1"
+                  aria-describedby="emailHelp" placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="code_1">
 
-                </tr>
-              </tbody>
-            </table>
+              </div>
+
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="exampleInputEmail1">วันหมดอายุ</label>
+                <input [disabled]="details" type="วันหมดอายุ" class="form-control" id="code"
+                  aria-describedby="emailHelp" placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="code">
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col text-center">
+              <button type="button" class="btn btn-warning mr-2 mb-5" (click)="edit()">เเก้ไข</button>
+            </div>
           </div>
         </div>
+      </div><br>
+
+      <div>
+        <div class="card mt" style="background-color: #663d2b; border-color: #fff;">
+          <div class="row"></div>
+          <table class="table table-light mt-4 table-show">
+            <thead class="text-center">
+              <tr class="text">
+                <th scope="col">ลำดับ</th>
+                <th scope="col">รหัสสินค้า</th>
+                <th scope="col">วันที่สินค้าเข้า</th>
+                <th scope="col">วันหมดอายุ</th>
+                <th scope="col">ประเภทสินค้า</th>
+                <th scope="col">ชื่อสินค้า</th>
+                <th scope="col">จำนวนสินค้า</th>
+                <th scope="col">ราคาสินค้าต่อชิ้น</th>
+                <th scope="col">ราคาสินค้าทั้งหมด</th>
+                <th scope="col">รายละเอียด</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr *ngFor="let data of this._data; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ data._ID }}</td>
+                <td>{{ data.code_1 }}</td>
+                <td>{{ data.code }}</td>
+                <td>{{ data.type }}</td>
+                <td>{{ data.Name }}</td>
+                <td>{{ data.amount }}</td>
+                <td>{{ formatMoney(data.price) }}</td>
+                <td>{{ formatMoney(data.priceall) }}</td>
+                <td>
+                  <button type="button" style="color: #0a0705;" class="btn btn-primary mr-2" (click)="pull(data)">
+                    รายละเอียด
+                  </button>
+                  <button type="button" style="color: #0a0705;" class="btn btn-danger " (click)="Delete(data)">
+                    ลบข้อมูล
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+
+      <button class="button" (click)="gotoProfile('add',0)">เพิ่มข้อมูลสินค้า</button>
+
     </div>
   </div>
-  <nav class="main-menu">
-    <li>
-      <div center>
-        <span class="nav-text">
-          <img
-            Url="https://firebasestorage.googleapis.com/v0/b/myloginapp-98f2d.appspot.com/o/files%2Flogo02.jpg?alt=media&token=80a4b1e2-a613-4fca-b2a2-9a73c201ad11"
-            width="50%" VSPACE=20>
-        </span>
-      </div>
-    </li>
 
-    <li>
-      <a href="http://localhost:4200/home">
-        <i class="fa fa-home fa-2x"></i>
-        <span class="nav-text">
-          หน้าแรก
-        </span>
-      </a>
-    </li>
+</div>
+<nav class="main-menu">
+  <li>
+    <div center>
+      <span class="nav-text">
+        <img
+          Url="https://firebasestorage.googleapis.com/v0/b/myloginapp-98f2d.appspot.com/o/files%2Flogo02.jpg?alt=media&token=80a4b1e2-a613-4fca-b2a2-9a73c201ad11"
+          width="50%" VSPACE=20>
+      </span>
+    </div>
+  </li>
 
-    <li>
-      <a href="http://localhost:4200/product">
-        <i class="fa fa-folder-open fa-2x"></i>
-        <span class="nav-text">
-          สินค้านำเข้า-ออก
-        </span>
-      </a>
-    </li>
-    <li>
-      <a href="http://localhost:4200/productEdit">
-        <i class="fa fa-folder-open fa-2x"></i>
-        <span class="nav-text">
-          เเก้ไขสินค้า
-        </span>
-      </a>
-    </li>
-    <li>
-      <a href="http://localhost:4200/productInformation">
-        <i class="fa fa-cloud fa-2x"></i>
-        <span class="nav-text">
-          สินค้าในคลัง
-        </span>
-      </a>
-    </li>
-    <li>
-      <a href="http://localhost:4200/">
-        <i class="fa fa-power-off fa-2x"></i>
-        <span class="nav-text">
-          ออกจากระบบ
-        </span>
-      </a>
-    </li>
-  </nav>
+  <li>
+    <a href="http://localhost:4200/home">
+      <i class="fa fa-home fa-2x"></i>
+      <span class="nav-text">
+        หน้าแรก
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a href="http://localhost:4200/product">
+      <i class="fa fa-cloud fa-2x"></i>
+      <span class="nav-text">
+        สินค้าในคลัง
+      </span>
+    </a>
+  </li>
+  <li>
+    <a href="http://localhost:4200/productEdit">
+      <i class="fa fa-folder-open fa-2x"></i>
+      <span class="nav-text">
+        เพิ่ม-เเก้ไขสินค้า
+      </span>
+    </a>
+  </li>
+  <li>
+    <a href="http://localhost:4200/productInformatio">
+      <i class="fa fa-folder-open fa-2x"></i>
+      <span class="nav-text">
+        เเก้ไขข้อมูลพนักงาน
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a href="http://localhost:4200/">
+      <i class="fa fa-power-off fa-2x"></i>
+      <span class="nav-text">
+        ออกจากระบบ
+      </span>
+    </a>
+  </li>
+</nav>

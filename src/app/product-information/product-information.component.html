@@ -8,76 +8,58 @@
       <div class="card">
 
         <div class="card-header">
-          <label>รายการสินค้า</label>
+          <label>ข้อมูลพนักงาน</label>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">รหัสสินค้า</label>
-                <input [disabled]="details" type="รหัสสินค้า" class="form-control" id="_ID" aria-describedby="emailHelp"
-                  placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="_ID">
+                <label for="exampleInputEmail1">Email</label>
+                <input [disabled]="details" type="Email" class="form-control" id="_ID" aria-describedby="emailHelp"
+                  placeholder="กรุณากรอกข้อมูล" [(ngModel)]="Email">
               </div>
             </div>
             <div class="col">
               <div class="form-group m">
-                <label for="exampleFormControlSelect1">ประเภทสินค้า</label>
-                <select [disabled]="details" class="form-control" id="type" [(ngModel)]="type">
-                  <option selected disabled value="">กรุณาเลือก</option>
-                  <option value="วัตถุดิบ">วัตถุดิบ</option>
-                  <option value="วัสดุอุปกรณ์">วัสดุอุปกรณ์</option>
-                  <option value="เมล็ดกาเเฟ">เมล็ดกาเเฟ</option>
-                </select>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Position</label>
+                    <input [disabled]="details" type="position" class="form-control" id="position"
+                      aria-describedby="emailHelp" placeholder="กรุณากรอกข้อมูล " [(ngModel)]="position">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">ชื่อสินค้า</label>
-                <input [disabled]="details" type="ชื่อสินค้า" class="form-control" id="Name"
-                  aria-describedby="emailHelp" placeholder="กรุณากรอกชื่อสินค้า " [(ngModel)]="Name">
+                <label for="exampleInputEmail1">Name</label>
+                <input [disabled]="details" type="Name" class="form-control" id="Name" aria-describedby="emailHelp"
+                  placeholder="กรุณากรอกข้อมูล " [(ngModel)]="Name">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputPassword1">จำนวนสินค้า</label>
-                <input [disabled]="details" type="จำนวนสินค้า" class="form-control" id="amount"
-                  placeholder="กรุณากรอกจำนวนสินค้า" [(ngModel)]="amount">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label for="exampleInputEmail1">ราคาสินค้าต่อชิ้น</label>
-                <input [disabled]="details" type="ราคาสินค้า" class="form-control" id="price"
-                  aria-describedby="emailHelp " placeholder="กรุณากรอกราคาสินค้า" [(ngModel)]="price">
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="exampleInputPassword1">ราคาสินค้าทั้งหมด</label>
-                <input [disabled]="details" type="ราคาสินค้าทั้งหมด" class="form-control" id="priceall"
-                  placeholder="กรุณากรอกราคาสินค้าทั้งหมด" [(ngModel)]="priceall">
+                <label for="exampleInputPassword1">Lastname</label>
+                <input [disabled]="details" type="Lastname" class="form-control" id="amount"
+                  placeholder="กรุณากรอกข้อมูล" [(ngModel)]="Lastname">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">วันที่สินค้าเข้า</label>
-                <input [disabled]="details" type="วันหมดอายุ" class="form-control" id="code_1"
-                  aria-describedby="emailHelp" placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="code_1">
-
+                <label for="exampleInputEmail1">Phone</label>
+                <input [disabled]="details" type="text" class="form-control" id="price" aria-describedby="emailHelp "
+                  placeholder="กรุณากรอกข้อมูล" [(ngModel)]="Phone">
               </div>
-
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">วันหมดอายุ</label>
-                <input [disabled]="details" type="วันหมดอายุ" class="form-control" id="code"
-                  aria-describedby="emailHelp" placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="code">
+                <label for="exampleInputPassword1">Password</label>
+                <input [disabled]="details" type="text" class="form-control" placeholder="กรุณากรอกข้อมูล"
+                  [(ngModel)]="Password">
               </div>
             </div>
           </div>
@@ -96,34 +78,30 @@
           <table class="table table-light mt-4 table-show">
             <thead class="text-center">
               <tr class="text">
-                <th scope="col">ลำดับ</th>
-                <th scope="col">รหัสสินค้า</th>
-                <th scope="col">วันที่สินค้าเข้า</th>
-                <th scope="col">วันหมดอายุ</th>
-                <th scope="col">ประเภทสินค้า</th>
-                <th scope="col">ชื่อสินค้า</th>
-                <th scope="col">จำนวนสินค้า</th>
-                <th scope="col">ราคาสินค้าต่อชิ้น</th>
-                <th scope="col">ราคาสินค้าทั้งหมด</th>
-                <th scope="col">รายละเอียด</th>
+                <th scope="col">No.</th>
+                <th scope="col">Email</th>
+                <th scope="col">Name</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Password</th>
+                <th scope="col">Phone</th>
+                <th scope="col">position</th>
+                <th scope="col">Manager</th>
               </tr>
             </thead>
             <tbody class="text-center">
-              <tr *ngFor="let data of this._data; let i = index">
+              <tr *ngFor="let data of this.data_user; let i = index">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{ data._ID }}</td>
-                <td>{{ data.code_1 }}</td>
-                <td>{{ data.code }}</td>
-                <td>{{ data.type }}</td>
+                <td>{{ data.Email }}</td>
                 <td>{{ data.Name }}</td>
-                <td>{{ data.amount }}</td>
-                <td>{{ formatMoney(data.price) }}</td>
-                <td>{{ formatMoney(data.priceall) }}</td>
+                <td>{{ data.Lastname }}</td>
+                <td>{{ data.Password }}</td>
+                <td>{{ data.Phone }}</td>
+                <td>{{ data.position }}</td>
                 <td>
                   <button type="button" style="color: #0a0705;" class="btn btn-primary mr-2" (click)="pull(data)">
-                    รายละเอียด
+                    เเก้ไข
                   </button>
-                  <button type="button" style="color: #0a0705;" class="btn btn-danger " (click)="Delete(data)">
+                  <button type="button" style="color: #0a0705;" class="btn btn-danger" (click)="Delete(data)">
                     ลบข้อมูล
                   </button>
                 </td>
@@ -134,7 +112,7 @@
       </div>
 
 
-      <button class="button" (click)="gotoProfile('add',0)">เพิ่มข้อมูลสินค้า</button>
+      <!-- <button class="button" (click)="gotoProfile('add',0)">เพิ่มข้อมูลสินค้า</button> -->
 
     </div>
   </div>

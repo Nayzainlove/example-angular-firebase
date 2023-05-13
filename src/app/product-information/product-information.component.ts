@@ -5,7 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DropdownModels } from './productstore/productstore.module';
 import { DatePipe } from '@angular/common';
-
+import { BehaviorSubject, map } from 'rxjs';
 
 @Component({
   selector: 'app-product-information',
@@ -13,14 +13,19 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./product-information.component.css'],
 })
 export class ProductInformationComponent implements OnInit {
+  /* -------------------------------------------------------------------------- */
+  /*                                 constructor                                */
+  /* -------------------------------------------------------------------------- */
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,
     private firestore: AngularFirestore
   ) {}
-
-getFormatedDate(date: Date, format: string) {
+  /* -------------------------------------------------------------------------- */
+  /*                                  functions                                  */
+  /* -------------------------------------------------------------------------- */
+  getFormatedDate(date: Date, format: string) {
     const datePipe = new DatePipe('en-US');
     return datePipe.transform(date, format);
   }
@@ -37,16 +42,16 @@ getFormatedDate(date: Date, format: string) {
   details = false;
   list: any[] = [];
   [x: string]: any;
-
-
-
+  /* -------------------------------------------------------------------------- */
+  /*                                 life circle                                */
+  /* -------------------------------------------------------------------------- */
   ngOnInit(): void {
-
+    this.GetAll2();
   }
   /* -------------------------------------------------------------------------- */
   /*                                  variable                                  */
   /* -------------------------------------------------------------------------- */
-  Name: any | null = '';
+  data_user: any[] = [];
   _ID: any | null = '';
   amount: any | null = '';
   price: number = 0;
@@ -58,6 +63,15 @@ getFormatedDate(date: Date, format: string) {
   isCheckValidator: boolean = false;
   _data: any = [];
   dropdownData = new FormControl('', [Validators.required]);
+
+  Email: any | null = '';
+  Lastname: any | null = '';
+  Name: any | null = '';
+  Password: any | null = '';
+  Phone: any | null = '';
+  position: any | null = '';
+  id: any | null = '';
+
   /* -------------------------------------------------------------------------- */
   /*                                  functions                                 */
   /* -------------------------------------------------------------------------- */
@@ -68,20 +82,31 @@ getFormatedDate(date: Date, format: string) {
   /* --------------------------------- // Get --------------------------------- */
   // ---- Get All Document
 
-  GetAll(category?: any): void {
+  GetAll(): void {
     this.firestore
-      .collection('product(coffee)')
+      .collection('profile')
+      .snapshotChanges()
+      .subscribe((data) => {
+        data.forEach((doc) => {
+          const id = doc.payload.doc.id;
+          const dataUser = doc.payload.doc.data();
+          const data = { id, dataUser };
+          this.data_user.push(data);
+        });
+      });
+    console.log(this.data_user);
+  }
+
+  GetAll2(): void {
+    this.firestore
+      .collection('profile')
       .valueChanges()
-      .subscribe((values) => {
-        this._data = values;
-        console.log(values);
-        console.log(this._data);
+      .subscribe((data) => {
+        console.log(data);
+        this.data_user = data;
       });
   }
 
-  /* -------------------------------------------------------------------------- */
-  /*                                    Fake                                    */
-  /* -------------------------------------------------------------------------- */
   // data = DATA_TABLE;
 
   dropdown: DropdownModels[] = [
@@ -91,26 +116,11 @@ getFormatedDate(date: Date, format: string) {
     { id: 4, value: 'ผลไม้' },
     { id: 5, value: 'ผัก' },
   ];
-  /* -------------------------------------------------------------------------- */
-  /*                                   functions Delete                         */
-  /* -------------------------------------------------------------------------- */
-  Delete(item?: any, category?: any): void {
-    this.firestore
-      .collection('product(coffee)')
-      .doc(item._ID)
-      .delete()
-      .then(() => {
-        this.resetForm();
-        this.isCheckEditMode = false;
-        // alert('Data delete successfully!');
-      })
-      .catch((error) => {
-        alert(`Error adding data: ${error}`);
-      });
+  Delete(item?: any): void {
+    alert(item);
+    this.firestore.collection('profile').doc(item.Email).delete();
+    this.GetAll();
   }
-  /* -------------------------------------------------------------------------- */
-  /*                                  functions  search                         */
-  /* -------------------------------------------------------------------------- */
   search(item: any, category?: any): void {
     this.firestore
       .collection('product(coffee)')
@@ -129,34 +139,31 @@ getFormatedDate(date: Date, format: string) {
         }
       });
   }
-  /* -------------------------------------------------------------------------- */
-  /*                                 functions   edit                           */
-  /* -------------------------------------------------------------------------- */
+  pull(payload: any): void {
+    console.log(payload);
+    this.id = payload.Email;
+    this.Name = payload.Name;
+    this.Lastname = payload.Lastname;
+    this.Email = payload.Email;
+    this.Phone = payload.Phone;
+    this.position = payload.position;
+    this.Password = payload.Password;
+  }
+
   edit(): void {
-    const data: any = {
-      Name: this.Name,
-      amount: this.amount,
-      price: this.price,
-      priceall: this.priceall,
-      code: this.code,
-      code_1: this.code_1,
-      type: this.type,
-      _ID: this._ID,
-    };
-    console.log(this.Name);
     this.firestore
-      .collection('product(coffee)')
-      .doc(this._ID)
-      .set(data)
-      .then(() => {
-        console.log(data);
-        this.resetForm();
-        this.isCheckEditMode = false;
-        this.router.navigate(['/product']);
-        // alert('Data added successfully!');
+      .collection('profile')
+      .doc(this.id)
+      .update({
+        Name: this.Name,
+        Lastname: this.Lastname,
+        Email: this.Email,
+        Phone: this.Phone,
+        position: this.position,
+        Password: this.Password,
       })
-      .catch((error) => {
-        alert(`Error adding data: ${error}`);
+      .then(() => {
+        location.reload();
       });
   }
   resetForm(): void {
@@ -168,47 +175,5 @@ getFormatedDate(date: Date, format: string) {
     this.code = '';
     this.code_1 = '';
     this.type = '';
-  }
-  /* -------------------------------------------------------------------------- */
-  /*                                  functions  pull                           */
-  /* -------------------------------------------------------------------------- */
-  pull(item: any, category?: any): void {
-    this.firestore
-      .collection('product(coffee)')
-      .doc(item._ID)
-      .get()
-      .subscribe((res) => {
-        if (res.exists) {
-          this.Name = item.Name;
-          this.amount = item.amount;
-          this.price = item.price;
-          this.priceall = item.priceall;
-          this.type = item.type;
-          this.code = item.code;
-          this.code_1 = item.code_1;
-          this._ID = item._ID;
-        }
-      });
-  }
-  /* -------------------------------------------------------------------------- */
-  /*                               // Search Data                               */
-  /* -------------------------------------------------------------------------- */
-  // ---- Search Fields inside a Document
-  Search(category?: any): void {
-    if (this._ID === '') {
-      return this.GetAll(category);
-    }
-    this.firestore
-      .collection('product(coffee)')
-      .doc(this._ID)
-      .valueChanges()
-      .subscribe((res) => {
-        if (res === undefined) {
-          alert('ไม่พบข้อมูล');
-          return;
-        }
-        this._data = [res];
-        this.resetForm();
-      });
   }
 }

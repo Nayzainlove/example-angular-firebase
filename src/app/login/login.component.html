@@ -16,7 +16,7 @@
       <input type="password" class="form-field animation a5" placeholder="รหัสผ่าน" name="password"
         [(ngModel)]="password"><br>
 
-      <button class="animation a6" routerLink="/home"><a>เข้าสู่ระบบ</a></button>
+      <button class="animation a6" (click)="login()"><a>เข้าสู่ระบบ</a></button>
 
       <a href="" style="text-decoration: none;">Need Account ? <span class="text-danger">Register</span></a>
     </div>

@@ -22,18 +22,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    if (this.email == '') {
-      alert('Plese enter email');
-      return;
+    console.log(this.email, this.password);
+    // this.auth.login(this.email, this.password);
+    if (this.email == 'admin' && this.password == 'admin') {
+      this.router.navigate(['/home']);
+    } else if (this.email !== 'admin') {
+      alert('email ไม่ถูกต้อง');
+    } else if (this.password !== 'admin') {
+      alert('password ไม่ถูกต้อง');
+    } else {
+      alert('ไม่พบผู้ใช้งาน');
     }
-
-    if (this.password == '') {
-      alert('Plese enter password');
-      return;
-    }
-
-    this.auth.login(this.email, this.password);
-    this.email = '';
-    this.password = '';
   }
 }

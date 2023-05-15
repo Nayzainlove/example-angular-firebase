@@ -8,6 +8,7 @@ import { ProductInformationComponent } from './product-information/product-infor
 import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'productInformation', component: ProductInformationComponent },
   { path: 'productEdit', component: ProductEditComponent },
+  { path: 'edit_profile', component: EditprofileComponent },
 ];
 
 @NgModule({

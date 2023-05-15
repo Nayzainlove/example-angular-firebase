@@ -5,7 +5,6 @@ import { FormControl, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DropdownModels } from './productstore/productstore.module';
 import { DatePipe } from '@angular/common';
-import { BehaviorSubject, map } from 'rxjs';
 
 @Component({
   selector: 'app-product-information',
@@ -30,7 +29,7 @@ export class ProductInformationComponent implements OnInit {
     return datePipe.transform(date, format);
   }
   gotoProfile(add: string, id: number) {
-    this.router.navigate(['/edit_product'], {
+    this.router.navigate(['/edit_profile'], {
       queryParams: {
         status: add,
         id: id,
@@ -117,28 +116,20 @@ export class ProductInformationComponent implements OnInit {
     { id: 5, value: 'ผัก' },
   ];
   Delete(item?: any): void {
-    alert(item);
-    this.firestore.collection('profile').doc(item.Email).delete();
-    this.GetAll();
-  }
-  search(item: any, category?: any): void {
     this.firestore
-      .collection('product(coffee)')
-      .doc(this._ID)
-      .get()
-      .subscribe((res) => {
-        if (res.exists) {
-          this.Name = item.Name;
-          this.amount = item.amount;
-          this.price = item.price;
-          this.priceall = item.priceall;
-          this.type = item.type;
-          this.code = item.code;
-          this.code_1 = item.code_1;
-          this._ID = item._ID;
-        }
+      .collection('profile')
+      .doc(item.Email)
+      .delete()
+      .then(() => {
+        this.resetForm();
+        this.isCheckEditMode = false;
+        // alert('Data delete successfully!');
+      })
+      .catch((error) => {
+        alert(`Error adding data: ${error}`);
       });
   }
+
   pull(payload: any): void {
     console.log(payload);
     this.id = payload.Email;
@@ -168,12 +159,10 @@ export class ProductInformationComponent implements OnInit {
   }
   resetForm(): void {
     this.Name = '';
-    this._ID = '';
-    this.amount = '';
-    this.price = 0;
-    this.priceall = 0;
-    this.code = '';
-    this.code_1 = '';
-    this.type = '';
+    this.Lastname = '';
+    this.Phone = '';
+    this.Email = '';
+    this.position = '';
+    this.Password = '';
   }
 }

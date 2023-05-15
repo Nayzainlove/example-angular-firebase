@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductInformationComponent } from './product-information/product-information.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { FilterPipe } from './product/filter.pipe';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FilterPipe } from './product/filter.pipe';
     ProductInformationComponent,
     ProductEditComponent,
     FilterPipe,
+    EditprofileComponent,
   ],
   imports: [
     BrowserModule,

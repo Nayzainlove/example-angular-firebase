@@ -1,7 +1,7 @@
 <div class="row_background">
 
   <div class="wrapper"><br>
-    <h1 class="htext co1 ">เเก้ไขข้อมูลพนักงาน</h1>
+    <h1 class="htext co1 ">จัดการข้อมูลพนักงาน</h1>
 
     <div class="container-space">
 
@@ -14,34 +14,33 @@
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
+                <label for="exampleInputEmail1">อีเมล</label>
                 <input [disabled]="details" type="Email" class="form-control" id="_ID" aria-describedby="emailHelp"
                   placeholder="กรุณากรอกข้อมูล" [(ngModel)]="Email">
               </div>
             </div>
             <div class="col">
               <div class="form-group m">
-                <div class="col">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Position</label>
-                    <input [disabled]="details" type="position" class="form-control" id="position"
-                      aria-describedby="emailHelp" placeholder="กรุณากรอกข้อมูล " [(ngModel)]="position">
-                  </div>
-                </div>
+                <label for="exampleFormControlSelect1">ตำเเหน่ง</label>
+                <select [disabled]="details" class="form-control" id="type" [(ngModel)]="type">
+                  <option selected disabled value="">กรุณาเลือก</option>
+                  <option value="พนักงาน">พนักงาน</option>
+                  <option value="พนักงาน">ผู้จัดการ</option>
+                </select>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
+                <label for="exampleInputEmail1">ชื่อ</label>
                 <input [disabled]="details" type="Name" class="form-control" id="Name" aria-describedby="emailHelp"
                   placeholder="กรุณากรอกข้อมูล " [(ngModel)]="Name">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputPassword1">Lastname</label>
+                <label for="exampleInputPassword1">นามสกุล</label>
                 <input [disabled]="details" type="Lastname" class="form-control" id="amount"
                   placeholder="กรุณากรอกข้อมูล" [(ngModel)]="Lastname">
               </div>
@@ -50,14 +49,14 @@
           <div class="row">
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputEmail1">Phone</label>
+                <label for="exampleInputEmail1">เบอร์โทรศัพท์</label>
                 <input [disabled]="details" type="text" class="form-control" id="price" aria-describedby="emailHelp "
                   placeholder="กรุณากรอกข้อมูล" [(ngModel)]="Phone">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="exampleInputPassword1">พาสเวิร์ด</label>
                 <input [disabled]="details" type="text" class="form-control" placeholder="กรุณากรอกข้อมูล"
                   [(ngModel)]="Password">
               </div>
@@ -78,14 +77,14 @@
           <table class="table table-light mt-4 table-show">
             <thead class="text-center">
               <tr class="text">
-                <th scope="col">No.</th>
-                <th scope="col">Email</th>
-                <th scope="col">Name</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Password</th>
-                <th scope="col">Phone</th>
-                <th scope="col">position</th>
-                <th scope="col">Manager</th>
+                <th scope="col">ลำดับ</th>
+                <th scope="col">อีเมล</th>
+                <th scope="col">ชื่อ</th>
+                <th scope="col">นามสกุล</th>
+                <th scope="col">รหัสผ่าน</th>
+                <th scope="col">เบอร์โทรศัพท์</th>
+                <th scope="col">ตำเเหน่ง</th>
+                <th scope="col">รายละเอียด</th>
               </tr>
             </thead>
             <tbody class="text-center">
@@ -111,6 +110,7 @@
         </div>
       </div>
 
+      <button class="button" (click)="gotoProfile('add',0)">เพิ่มข้อมูลพนักงาน</button>
 
       <!-- <button class="button" (click)="gotoProfile('add',0)">เพิ่มข้อมูลสินค้า</button> -->
 
@@ -140,7 +140,7 @@
 
   <li>
     <a href="http://localhost:4200/product">
-      <i class="fa fa-cloud fa-2x"></i>
+      <i class="fa fa-archive fa-2x"></i>
       <span class="nav-text">
         สินค้าในคลัง
       </span>
@@ -148,7 +148,7 @@
   </li>
   <li>
     <a href="http://localhost:4200/productEdit">
-      <i class="fa fa-folder-open fa-2x"></i>
+      <i class="fa fa-edit fa-2x"></i>
       <span class="nav-text">
         เพิ่ม-เเก้ไขสินค้า
       </span>
@@ -156,9 +156,9 @@
   </li>
   <li>
     <a href="http://localhost:4200/productInformation">
-      <i class="fa fa-folder-open fa-2x"></i>
+      <i class="fa fa-edit fa-2x"></i>
       <span class="nav-text">
-        เเก้ไขข้อมูลพนักงาน
+        จัดการข้อมูลพนักงาน
       </span>
     </a>
   </li>

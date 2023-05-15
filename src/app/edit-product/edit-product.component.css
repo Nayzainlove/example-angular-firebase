@@ -10,7 +10,7 @@
   }
   .co1{
       text-align: center;
-      font-family: 'Inter';
+      font-family: 'Noto Sans Thai', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 50px;
@@ -41,7 +41,7 @@
   }
   .card-header{
     background: #5E1919;
-    font-family: 'Inter';
+    font-family: 'Noto Sans Thai', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -100,7 +100,7 @@ display:table;
 border-collapse:collapse;
 border-spacing:0;
 color:#999;
- font-family: arial;
+font-family: 'Noto Sans Thai', sans-serif;
 font-size: 14px;
 text-decoration:none;
 -webkit-transition:all .1s linear;
@@ -123,7 +123,7 @@ position:relative;
 display:table-cell;
 vertical-align:middle;
 width:190px;
-  font-family: 'Titillium Web', sans-serif;
+font-family: 'Noto Sans Thai', sans-serif;
 }
 
 .main-menu>ul.logout {
@@ -171,7 +171,7 @@ height: 100%;
 opacity: 0.3;
 }
 @font-face {
-  font-family: 'Titillium Web';
+  font-family: 'Noto Sans Thai', sans-serif;
   font-style: normal;
   font-weight: 300;
   src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');

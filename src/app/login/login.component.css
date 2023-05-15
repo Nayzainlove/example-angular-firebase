@@ -1,233 +1,221 @@
-.row_background{
+* {
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.row_background {
   width: 100%;
   height: 937px;
 
   background-image: url(https://firebasestorage.googleapis.com/v0/b/myloginapp-98f2d.appspot.com/o/4999.jpg?alt=media&token=5efaa0ad-ffad-46e4-9adf-3953dd14c012);
 
   /* background: #E8C5C5; */
-  }
-  .line {
-
+}
+.line {
   width: 400px;
   left: 1000px;
   top: 500px;
 
   border: 5px solid #000000;
   transform: rotate(0.18deg);
-    }
+}
 
-  .bi-telephone-fill{
+.bi-telephone-fill {
+  font-family: "Noto Sans Thai", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
 
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 24px;
+  color: #000000;
+}
+.bi-house-door-fill {
+  font-family: "Noto Sans Thai", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
 
-      color: #000000;
-    }
-    .bi-house-door-fill{
+  color: #000000;
+}
+.bi-facebook {
+  font-family: "Noto Sans Thai", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
 
+  color: #000000;
+}
+.bi-envelope {
+  font-family: "Noto Sans Thai", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
 
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 24px;
+  color: #000000;
+}
 
-      color: #000000;
-    }
-    .bi-facebook{
+.button:hover {
+  background-color: #e8c5c5;
+}
 
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 24px;
+.button:active {
+  background-color: #e8c5c5;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
-      color: #000000;
-    }
-    .bi-envelope{
+.container-space {
+  margin: 4% 8% 8% 8%;
+}
 
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 20px;
-      line-height: 24px;
+body {
+  font-family: 'Noto Sans Thai', sans-serif;
+}
 
-      color: #000000;
-    }
+.left {
+  animation-name: left;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 1s;
+}
 
-  .button:hover {background-color: #E8C5C5}
+.right {
+  flex: 1;
+  background-color: black;
+  transition: 1s;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/myloginapp-98f2d.appspot.com/o/files%2Flogo02.jpg?alt=media&token=80a4b1e2-a613-4fca-b2a2-9a73c201ad11);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
-  .button:active {
-    background-color: #E8C5C5;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+.header > h1 {
+  margin: 0;
+}
 
+.header > h2 {
+  margin: 0;
+  color: rgb(231, 224, 224);
+}
+
+.header > h4 {
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 15px;
+  color: rgb(231, 224, 224);
+}
+
+.form {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form > p {
+  text-align: right;
+}
+
+.form > p > a {
+  color: rgb(238, 237, 237);
+  font-size: 14px;
+}
+
+.form-field:focus {
+  border-color: #25d091;
+}
+.form > button {
+  padding: 12px 10px;
+  border: 0;
+  background-color: #5e1919;
+  border-radius: 3px;
+  margin-top: 10px;
+  color: white;
+  letter-spacing: 1px;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+.form-field {
+  height: 46px;
+  padding: 0 16px;
+  border: 2px solid rgb(250, 249, 249);
+  border-radius: 4px;
+    font-family: 'Noto Sans Thai', sans-serif;
+  outline: 0;
+  transition: 0.2s;
+  margin-top: 20px;
+}
+
+.form-field:focus {
+  border-color: #010705;
+}
+
+.form > button:hover {
+  background-color: #8b5b5b;
+}
+
+.form > button:active {
+  background-color: color(252, 252, 252);
+  box-shadow: 0 3px rgb(252, 252, 252);
+  transform: translateY(4px);
+}
+
+.animation {
+  text-decoration: none;
+  animation-name: move;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+.a1 {
+  animation-delay: 2s;
+}
+
+.a2 {
+  animation-delay: 2.1s;
+}
+
+.a3 {
+  animation-delay: 2.2s;
+}
+
+.a4 {
+  animation-delay: 2.3s;
+}
+
+.a5 {
+  animation-delay: 2.4s;
+}
+
+.a6 {
+  text-decoration: none;
+  animation-delay: 2.5s;
+}
+
+@keyframes move {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-40px);
   }
 
-  .container-space{
-    margin: 4% 8% 8% 8%;
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
 
+@keyframes left {
+  0% {
+    opacity: 0;
+    width: 0;
   }
 
-
-
-  body {
-    font-family: 'Rubik', sans-serif;
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    width: 440px;
   }
-
-
-  .left {
-    animation-name: left;
-    animation-duration: 1s;
-    animation-fill-mode: both;
-    animation-delay: 1s;
-  }
-
-  .right {
-    flex: 1;
-    background-color: black;
-    transition: 1s;
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/myloginapp-98f2d.appspot.com/o/files%2Flogo02.jpg?alt=media&token=80a4b1e2-a613-4fca-b2a2-9a73c201ad11 );
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .header > h1 {
-      margin: 0;
-
-    }
-
-  .header > h2 {
-    margin: 0;
-    color: rgb(231, 224, 224);
-  }
-
-  .header > h4 {
-    margin-top: 10px;
-    font-weight: normal;
-    font-size: 15px;
-    color: rgb(231, 224, 224);
-  }
-
-  .form {
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form > p {
-    text-align: right;
-  }
-
-  .form > p > a {
-    color: rgb(238, 237, 237);
-    font-size: 14px;
-  }
-
-  .form-field:focus {
-    border-color: #25d091;
-  }
-  .form > button {
-    padding: 12px 10px;
-    border: 0;
-    background-color: #5E1919;
-    border-radius: 3px;
-    margin-top: 10px;
-    color: white;
-    letter-spacing: 1px;
-    font-family: 'Rubik', sans-serif;
-
-  }
-  .form-field {
-    height: 46px;
-    padding: 0 16px;
-    border: 2px solid rgb(250, 249, 249);
-    border-radius: 4px;
-    font-family: 'Rubik', sans-serif;
-    outline: 0;
-    transition: .2s;
-    margin-top: 20px;
-  }
-
-  .form-field:focus {
-    border-color: #010705;
-  }
-
-
-  .form > button:hover {background-color: #8b5b5b}
-
-  .form > button:active {
-
-    background-color: color(252, 252, 252);
-    box-shadow: 0 3px rgb(252, 252, 252);
-    transform: translateY(4px);
-  }
-
-
-  .animation {
-    text-decoration: none;
-    animation-name: move;
-    animation-duration: .4s;
-    animation-fill-mode: both;
-    animation-delay: 2s;
-  }
-
-  .a1 {
-    animation-delay: 2s;
-
-  }
-
-  .a2 {
-
-    animation-delay: 2.1s;
-  }
-
-  .a3 {
-
-    animation-delay: 2.2s;
-  }
-
-  .a4 {
-    animation-delay: 2.3s;
-  }
-
-  .a5 {
-    animation-delay: 2.4s;
-  }
-
-  .a6 {
-    text-decoration: none;
-    animation-delay: 2.5s;
-  }
-
-  @keyframes move {
-    0% {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-40px);
-    }
-
-    100% {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes left {
-    0% {
-      opacity: 0;
-      width: 0;
-    }
-
-    100% {
-      opacity: 1;
-      padding: 20px 40px;
-      width: 440px;
-    }
-  }
-
+}

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DropdownModels } from './prostore/prostore.module';
 import { FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-edit',
@@ -92,19 +93,36 @@ export class ProductEditComponent implements OnInit {
   /* -------------------------------------------------------------------------- */
   /*                                   functions Delete                         */
   /* -------------------------------------------------------------------------- */
-  Delete(item?: any, category?: any): void {
-    this.firestore
-      .collection('product(coffee)')
-      .doc(item._ID)
-      .delete()
-      .then(() => {
-        this.resetForm();
-        this.isCheckEditMode = false;
-        // alert('Data delete successfully!');
-      })
-      .catch((error) => {
-        alert(`Error adding data: ${error}`);
-      });
+
+  Delete(item?: any): void {
+    Swal.fire({
+      title: 'คุณเเน่ใจที่จะลบหรือไม่ ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.firestore
+          .collection('product(coffee)')
+          .doc(item._ID)
+          .delete()
+          .then(() => {
+            this.resetForm();
+            this.isCheckEditMode = false;
+            // alert('Data delete successfully!');
+          })
+          .catch((error) => {
+            alert(`Error adding data: ${error}`);
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire('ยกเลิก');
+      }
+    });
   }
   /* -------------------------------------------------------------------------- */
   /*                                  functions  search                         */
@@ -130,32 +148,75 @@ export class ProductEditComponent implements OnInit {
   /* -------------------------------------------------------------------------- */
   /*                                 functions   edit                           */
   /* -------------------------------------------------------------------------- */
+  // edit(): void {
+  //   const data: any = {
+  //     Name: this.Name,
+  //     amount: this.amount,
+  //     price: this.price,
+  //     priceall: this.priceall,
+  //     code: this.code,
+  //     code_1: this.code_1,
+  //     type: this.type,
+  //     _ID: this._ID,
+  //   };
+  //   console.log(this.Name);
+  //   this.firestore
+  //     .collection('product(coffee)')
+  //     .doc(this._ID)
+  //     .set(data)
+  //     .then(() => {
+  //       console.log(data);
+  //       this.resetForm();
+  //       this.isCheckEditMode = false;
+  //       this.router.navigate(['/product']);
+  //       // alert('Data added successfully!');
+  //     })
+  //     .catch((error) => {
+  //       alert(`Error adding data: ${error}`);
+  //     });
+  // }
   edit(): void {
-    const data: any = {
-      Name: this.Name,
-      amount: this.amount,
-      price: this.price,
-      priceall: this.priceall,
-      code: this.code,
-      code_1: this.code_1,
-      type: this.type,
-      _ID: this._ID,
-    };
-    console.log(this.Name);
-    this.firestore
-      .collection('product(coffee)')
-      .doc(this._ID)
-      .set(data)
-      .then(() => {
-        console.log(data);
-        this.resetForm();
-        this.isCheckEditMode = false;
-        this.router.navigate(['/product']);
-        // alert('Data added successfully!');
-      })
-      .catch((error) => {
-        alert(`Error adding data: ${error}`);
-      });
+    Swal.fire({
+      title: 'คุณเเน่ใจที่จะเเก้ไขหรือไม่ ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data: any = {
+          Name: this.Name,
+          amount: this.amount,
+          price: this.price,
+          priceall: this.priceall,
+          code: this.code,
+          code_1: this.code_1,
+          type: this.type,
+          _ID: this._ID,
+        };
+        console.log(this.Name);
+        this.firestore
+          .collection('product(coffee)')
+          .doc(this._ID)
+          .set(data)
+          .then(() => {
+            console.log(data);
+            this.resetForm();
+            this.isCheckEditMode = false;
+            this.router.navigate(['/edit-product']);
+            // alert('Data added successfully!');
+          })
+          .catch((error) => {
+            alert(`Error adding data: ${error}`);
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire('ยกเลิก');
+      }
+    });
   }
   resetForm(): void {
     this.Name = '';

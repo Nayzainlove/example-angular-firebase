@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Product } from '../model/model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editprofile',
@@ -64,29 +65,69 @@ export class EditprofileComponent implements OnInit {
   ngOnInit(): void {}
 
   // ---- Add Document With Customer ID
+  // add(category?: any): void {
+  //   const data: any = {
+  //     Email: this.Email,
+  //     Lastname: this.Lastname,
+  //     Name: this.Name,
+  //     Password: this.Password,
+  //     Phone: this.Phone,
+  //     position: this.position,
+  //   };
+  //   this.firestore
+  //     .collection('profile')
+  //     .doc(this.Email)
+  //     .set(data)
+  //     .then(() => {
+  //       console.log(data);
+  //       this.resetForm();
+  //       this.isCheckEditMode = false;
+  //       this.router.navigate(['/profile']);
+  //       // alert('Data added successfully!');
+  //     })
+  //     .catch((error) => {
+  //       alert(`Error adding data: ${error}`);
+  //     });
+  // }
   add(category?: any): void {
-    const data: any = {
-      Email: this.Email,
-      Lastname: this.Lastname,
-      Name: this.Name,
-      Password: this.Password,
-      Phone: this.Phone,
-      position: this.position,
-    };
-    this.firestore
-      .collection('profile')
-      .doc(this.Email)
-      .set(data)
-      .then(() => {
-        console.log(data);
-        this.resetForm();
-        this.isCheckEditMode = false;
-        this.router.navigate(['/profile']);
-        // alert('Data added successfully!');
-      })
-      .catch((error) => {
-        alert(`Error adding data: ${error}`);
-      });
+    Swal.fire({
+      title: 'คุณเเน่ใจที่จะเพิ่มหรือไม่ ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data: any = {
+          Email: this.Email,
+          Lastname: this.Lastname,
+          Name: this.Name,
+          Password: this.Password,
+          Phone: this.Phone,
+          position: this.position,
+        };
+        this.firestore
+          .collection('profile')
+          .doc(this.Email)
+          .set(data)
+          .then(() => {
+            console.log(data);
+            this.resetForm();
+            this.isCheckEditMode = false;
+            this.router.navigate(['/productInformation']);
+            // alert('Data added successfully!');
+          })
+          .catch((error) => {
+            alert(`Error adding data: ${error}`);
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire('ยกเลิก');
+      }
+    });
   }
   resetForm(): void {
     this.Email = '';

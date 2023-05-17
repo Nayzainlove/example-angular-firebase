@@ -2,12 +2,13 @@ import { DataService } from './../data.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, async } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { Product } from '../model/model';
 import { FormControl, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { formatNumber } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-product',
@@ -58,31 +59,74 @@ export class EditProductComponent implements OnInit {
   ngOnInit(): void {}
 
   // ---- Add Document With Customer ID
+
+  // add(category?: any): void {
+  //   const data: any = {
+  //     Name: this.Name,
+  //     amount: this.amount,
+  //     price: this.price,
+  //     priceall: this.priceall,
+  //     code: this.code,
+  //     code_1: this.code,
+  //     type: this.type,
+  //     _ID: this._ID,
+  //   };
+  //   this.firestore
+  //     .collection('product(coffee)')
+  //     .doc(this._ID)
+  //     .set(data)
+  //     .then(() => {
+  //       console.log(data);
+  //       this.resetForm();
+  //       this.isCheckEditMode = false;
+  //       this.router.navigate(['/product']);
+  //       // alert('Data added successfully!');
+  //     })
+  //     .catch((error) => {
+  //       alert(`Error adding data: ${error}`);
+  //     });
+  // }
   add(category?: any): void {
-    const data: any = {
-      Name: this.Name,
-      amount: this.amount,
-      price: this.price,
-      priceall: this.priceall,
-      code: this.code,
-      code_1: this.code,
-      type: this.type,
-      _ID: this._ID,
-    };
-    this.firestore
-      .collection('product(coffee)')
-      .doc(this._ID)
-      .set(data)
-      .then(() => {
-        console.log(data);
-        this.resetForm();
-        this.isCheckEditMode = false;
-        this.router.navigate(['/product']);
-        // alert('Data added successfully!');
-      })
-      .catch((error) => {
-        alert(`Error adding data: ${error}`);
-      });
+    Swal.fire({
+      title: 'คุณเเน่ใจที่จะเพิ่มหรือไม่ ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data: any = {
+          Name: this.Name,
+          amount: this.amount,
+          price: this.price,
+          priceall: this.priceall,
+          code: this.code,
+          code_1: this.code,
+          type: this.type,
+          _ID: this._ID,
+        };
+        this.firestore
+          .collection('product(coffee)')
+          .doc(this._ID)
+          .set(data)
+          .then(() => {
+            console.log(data);
+            this.resetForm();
+            this.isCheckEditMode = false;
+            this.router.navigate(['/product']);
+            // alert('Data added successfully!');
+          })
+          .catch((error) => {
+            alert(`Error adding data: ${error}`);
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire('ยกเลิก');
+      }
+    });
   }
   resetForm(): void {
     this.Name = '';

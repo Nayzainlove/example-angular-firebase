@@ -8,6 +8,7 @@
       <div class="card">
 
         <div class="card-header">
+
           <label>รายการสินค้า</label>
         </div>
         <div class="card-body">
@@ -16,7 +17,7 @@
               <div class="form-group">
                 <label for="exampleInputEmail1">รหัสสินค้า</label>
                 <input [disabled]="details" type="รหัสสินค้า" class="form-control" id="_ID" aria-describedby="emailHelp"
-                  placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="_ID">
+                  placeholder="กรุณากรอกรหัสสินค้า " [(ngModel)]="_ID" disabled="ture">
               </div>
             </div>
             <div class="col">
@@ -131,10 +132,11 @@
             </tbody>
           </table>
         </div>
+
       </div>
 
-
       <button class="button" (click)="gotoProfile('add',0)">เพิ่มข้อมูลสินค้า</button>
+
 
     </div>
   </div>

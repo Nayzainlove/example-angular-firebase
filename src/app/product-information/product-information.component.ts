@@ -5,7 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DropdownModels } from './productstore/productstore.module';
 import { DatePipe } from '@angular/common';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-information',
   templateUrl: './product-information.component.html',
@@ -116,18 +116,37 @@ export class ProductInformationComponent implements OnInit {
     { id: 5, value: 'ผัก' },
   ];
   Delete(item?: any): void {
-    this.firestore
-      .collection('profile')
-      .doc(item.Email)
-      .delete()
-      .then(() => {
-        this.resetForm();
-        this.isCheckEditMode = false;
-        // alert('Data delete successfully!');
-      })
-      .catch((error) => {
-        alert(`Error adding data: ${error}`);
-      });
+    Swal.fire({
+      title: 'คุณเเน่ใจที่จะลบหรือไม่ ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.firestore
+          .collection('profile')
+          .doc(item.Email)
+          .delete()
+          .then(() => {
+            this.resetForm();
+            this.isCheckEditMode = false;
+            // alert('Data delete successfully!');
+          })
+          .catch((error) => {});
+        // swalWithBootstrapButtons.fire(
+        //   'Deleted!',
+        //   'Your file has been deleted.',
+        //   'success'
+        // );
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire('ยกเลิก');
+      }
+    });
   }
 
   pull(payload: any): void {
@@ -141,21 +160,53 @@ export class ProductInformationComponent implements OnInit {
     this.Password = payload.Password;
   }
 
+  // edit(): void {
+  //   this.firestore
+  //     .collection('profile')
+  //     .doc(this.id)
+  //     .update({
+  //       Name: this.Name,
+  //       Lastname: this.Lastname,
+  //       Email: this.Email,
+  //       Phone: this.Phone,
+  //       position: this.position,
+  //       Password: this.Password,
+  //     })
+  //     .then(() => {
+  //       location.reload();
+  //     });
+  // }
   edit(): void {
-    this.firestore
-      .collection('profile')
-      .doc(this.id)
-      .update({
-        Name: this.Name,
-        Lastname: this.Lastname,
-        Email: this.Email,
-        Phone: this.Phone,
-        position: this.position,
-        Password: this.Password,
-      })
-      .then(() => {
-        location.reload();
-      });
+    Swal.fire({
+      title: 'คุณเเน่ใจที่จะเเก้ไขหรือไม่ ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.firestore
+          .collection('profile')
+          .doc(this.id)
+          .update({
+            Name: this.Name,
+            Lastname: this.Lastname,
+            Email: this.Email,
+            Phone: this.Phone,
+            position: this.position,
+            Password: this.Password,
+          })
+          .then(() => {
+            // location.reload();
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire('ยกเลิก');
+      }
+    });
   }
   resetForm(): void {
     this.Name = '';
